@@ -22,8 +22,9 @@ jobs:
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
           DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+          DOCKER_EMAIL: ${{ secrets.DOCKER_EMAIL }}  
         run: |
-          echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+          echo "$DOCKER_PASS" | docker login --username="$DOCKER_USER" --email=$"DOCKER_EMAIL" --password-stdin
           ./gradlew build
           docker build -t whub_api .
           docker push whub_api:latest
