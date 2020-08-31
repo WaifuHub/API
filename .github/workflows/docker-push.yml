@@ -26,4 +26,5 @@ jobs:
           echo "$DOCKER_PASS" | docker login --username "$DOCKER_USER" --password-stdin
           ./gradlew build
           docker build -t whub_api .
+          docker tag whub_api apol12/whub_api:latest
           docker push apol12/whub_api:latest
