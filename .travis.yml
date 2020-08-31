@@ -8,7 +8,7 @@ before_install:
 script:
   - ./gradlew test build
   - ./gradlew check
-  - ./gradlew codeCoverageReport
+  - ./gradlew jacocoTestReport
 after_success:
   - if [ -e ./gradlew ]; then ./gradlew jacocoTestReport;else gradle jacocoTestReport;fi
   - bash <(curl -s https://codecov.io/bash)
