@@ -13,10 +13,16 @@ class UserTest {
     private val TEST_EMAIL: String = "test_email@test.test"
     private val TEST_DISPLAY_NAME: String = "test_display_name"
     private val TEST_PASSWORD_HASH: String = "test_pass_hash"
-    private val TEST_USER: User = User(TEST_ID, TEST_EMAIL, TEST_DISPLAY_NAME, TEST_PASSWORD_HASH)
+    private val TEST_URI: String = "https://test_uri.png"
+    private val TEST_USER: User = User(TEST_ID, TEST_EMAIL, TEST_DISPLAY_NAME, TEST_PASSWORD_HASH, TEST_URI)
     private val TEST_SERIALIZED_USER = String.format(
         "{\"userId\":\"%s\",\"email\":\"%s\",\"displayName\":\"%s\"," +
-                "\"passwordHash\":\"%s\"}", TEST_ID, TEST_EMAIL, TEST_DISPLAY_NAME, TEST_PASSWORD_HASH
+                "\"passwordHash\":\"%s\",\"profileImageUri\":\"%s\"}",
+        TEST_ID,
+        TEST_EMAIL,
+        TEST_DISPLAY_NAME,
+        TEST_PASSWORD_HASH,
+        TEST_URI
     )
 
     @Test
