@@ -7,5 +7,5 @@ data class User(
     val email: String,
     val displayName: String,
     val passwordHash: String,
-    val profileImageUri: String
+    val profileImageUrl: String
 ) : Serializable
