@@ -14,7 +14,7 @@ interface DaoFacade : Closeable {
     /**
      * creates [user] in database
      */
-    fun createUser(user: User)
+    fun createUser(user: User): Int
 
     /**
      * retrieve user given [email], if not found returns null
@@ -29,12 +29,12 @@ interface DaoFacade : Closeable {
     /**
      * delete user from database given [uid]
      */
-    fun deleteUser(uid: String)
+    fun deleteUser(uid: String): Int
 
     /**
      * create [comment] in database
      */
-    fun createComment(comment: Comment)
+    fun createComment(comment: Comment): Int
 
     /**
      * retrieve comment given [commentId], if not found returns null
@@ -42,26 +42,14 @@ interface DaoFacade : Closeable {
     fun getCommentByCommentId(commentId: String): Comment?
 
     /**
-     * returns all comments of a given hub given the [hubId], if not found
-     * returns null
-     */
-    fun getAllCommentsByHubId(hubId: String): List<Comment>?
-
-    /**
-     * returns all comments of a given user given the [uid], if not found returns
-     * null
-     */
-    fun getAllCommentsByUserId(uid: String): List<Comment>?
-
-    /**
      * delete comment from database given it's [commentId]
      */
-    fun deleteComments(commentId: String)
+    fun deleteComment(commentId: String): Int
 
     /**
      * create [hub] in database
      */
-    fun createHub(hub: Hub)
+    fun createHub(hub: Hub): Int
 
     /**
      * retrieve hub given [id], if not found returns null
@@ -71,5 +59,5 @@ interface DaoFacade : Closeable {
     /**
      * delete hub from database given it's [id]
      */
-    fun deleteHub(id: String)
+    fun deleteHub(id: String): Int
 }

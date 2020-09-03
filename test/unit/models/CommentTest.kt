@@ -1,27 +1,27 @@
-package models
+package unit.models
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.whub.models.Comment
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import java.util.*
-import kotlin.test.assertEquals
 
 class CommentTest {
     private val MAPPER: ObjectMapper = jacksonObjectMapper()
     private val TEST_COMMENT_ID: String = "test_comment_id"
     private val TEST_HUB_ID: String = "test_hub_id"
     private val TEST_USER_ID: String = "test_user_id"
-    private val TEST_LIKE_COUNT: Int = 0
+    private val TEST_LIKE_COUNT: String = "0"
     private val TEST_COMMENT_TEXT = "test_comment_text"
-    private val TEST_DATE_POSTED = Date()
+    private val TEST_DATE_POSTED = Date().toString()
     private val TEST_COMMENT =
         Comment(TEST_COMMENT_ID, TEST_HUB_ID, TEST_USER_ID, TEST_LIKE_COUNT, TEST_COMMENT_TEXT, TEST_DATE_POSTED)
     private val TEST_SERIALIZED_COMMENT =
         String.format(
-            "{\"commentId\":\"%s\",\"hubId\":\"%s\",\"userId\":\"%s\"," +
-                    "\"likeCount\":%d,\"commentText\":\"%s\",\"datePosted\":%tQ}",
+            "{\"commentId\":\"%s\",\"hubId\":\"%s\",\"userId\":\"%s\",\"likeCount\":\"%s\",\"commentText\":\"%s\"" +
+                    ",\"datePosted\":\"%s\"}",
             TEST_COMMENT_ID,
             TEST_HUB_ID,
             TEST_USER_ID,

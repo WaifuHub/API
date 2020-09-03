@@ -1,11 +1,11 @@
-package models
+package unit.models
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.whub.models.User
-import org.junit.Assert.assertEquals
-import org.junit.Test
+import org.junit.Assert
+import org.junit.jupiter.api.Test
 
 class UserTest {
     private val MAPPER: ObjectMapper = jacksonObjectMapper()
@@ -28,12 +28,12 @@ class UserTest {
     @Test
     fun `when given user serialization succeeds`() {
         val serializedUser: String = MAPPER.writeValueAsString(TEST_USER)
-        assertEquals(serializedUser, TEST_SERIALIZED_USER)
+        Assert.assertEquals(serializedUser, TEST_SERIALIZED_USER)
     }
 
     @Test
     fun `when given correct user json deserialization succeeds`() {
         val user: User = MAPPER.readValue(TEST_SERIALIZED_USER)
-        assertEquals(user, TEST_USER)
+        Assert.assertEquals(user, TEST_USER)
     }
 }

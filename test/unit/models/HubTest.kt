@@ -1,11 +1,11 @@
-package models
+package unit.models
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.whub.models.Hub
-import org.junit.Test
-import kotlin.test.assertEquals
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 
 class HubTest {
     private val MAPPER: ObjectMapper = jacksonObjectMapper()

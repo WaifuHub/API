@@ -30,6 +30,10 @@ sourceSets {
 repositories {
     mavenLocal()
     jcenter()
+    maven {
+        name "DynamoDB Local Release Repository - EU (Frankfurt) Region"
+        url "https://s3.eu-central-1.amazonaws.com/dynamodb-local-frankfurt/release"
+    }
 }
 
 
@@ -40,6 +44,7 @@ dependencies {
     implementation "io.ktor:ktor-server-netty:$ktor_version"
     implementation "ch.qos.logback:logback-classic:$logback_version"
     implementation "io.ktor:ktor-jackson:$ktor_version"
+    implementation 'org.junit.jupiter:junit-jupiter:5.4.2'
     testImplementation "io.ktor:ktor-server-tests:$ktor_version"
     implementation platform('com.amazonaws:aws-java-sdk-bom:1.11.853')
     implementation 'com.amazonaws:aws-java-sdk-s3'
@@ -56,8 +61,29 @@ dependencies {
     compile "org.ehcache:ehcache:3.0.0.m4"
     compile group: 'io.ktor', name: 'ktor-server-test-host', version: '1.4.0'
     testCompile "io.ktor:ktor-server-test-host:$ktor_version"
-    testCompile "org.mockito:mockito-core:2.+"
     testCompile "org.koin:koin-test:$koin_version"
+    testImplementation "com.amazonaws:DynamoDBLocal:${dynamoDBLocalVersion}"
+
+
+// mockito
+    testImplementation 'org.mockito:mockito-core:2.4.0'
+// PowerMock
+    testImplementation 'org.powermock:powermock-core:1.7.0RC2'
+    testImplementation 'org.powermock:powermock-module-junit4:1.7.0RC2'
+    testImplementation 'org.powermock:powermock-api-mockito2:1.7.0RC2'
+
+
+
+}
+
+task copyNativeDeps(type: Copy) {
+    configurations.testImplementation.setCanBeResolved(true)
+    from(configurations.testImplementation + configurations.testCompile) {
+        include '*.dll'
+        include '*.dylib'
+        include '*.so'
+    }
+    into 'build/libs'
 }
 
 jacocoTestReport {
@@ -75,4 +101,9 @@ shadowJar {
     baseName = 'api'
     classifier = null
     version = null
+}
+
+test {
+    dependsOn copyNativeDeps
+    systemProperty 'java.library.path', 'build/libs'
 }
