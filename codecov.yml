@@ -22,3 +22,4 @@ comment:
 ignore:
   - "src/di"
   - "src/Application.kt"
+  - "src/dao/EntryDaoCache.kt"
