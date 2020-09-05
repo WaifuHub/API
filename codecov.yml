@@ -21,5 +21,6 @@ comment:
 
 ignore:
   - "src/di"
+  - "src/routes"
   - "src/Application.kt"
   - "src/dao/EntryDaoCache.kt"
